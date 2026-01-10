@@ -7,4 +7,7 @@ dependencies = [
     "pandas",
     "numpy",
     "streamlit-tts>=0.0.8",
+    "audioop-lts>=0.2.2",
+    "dotenv>=0.9.9",
+    "gtts>=2.5.4",
 ]
