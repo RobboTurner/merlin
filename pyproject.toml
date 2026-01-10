@@ -6,4 +6,5 @@ dependencies = [
     "streamlit",
     "pandas",
     "numpy",
+    "streamlit-tts>=0.0.8",
 ]
