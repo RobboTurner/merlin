@@ -8,9 +8,9 @@ from dataclasses import dataclass
 @dataclass
 class GithubClient:
     token: str = st.secrets["GITHUB_TOKEN"]
-    repo: str = "RobboTurner/merlin"
+    repo: str = "RobboTurner/merlindata"
     file: str = "data/state.json"
-    branch: str = "data"
+    branch: str = "main"
 
     def __post_init__(self):
         self.url = f"https://api.github.com/repos/{self.repo}/contents/{self.file}?ref={self.branch}"
@@ -27,7 +27,10 @@ class GithubClient:
         self.refresh_metadata()
         encoded = self.current_data["content"]
         decoded = base64.b64decode(encoded).decode()
+        
+        # includes all games
         return json.loads(decoded)
+        
 
     def write_github_json(self, new_data: Dict) -> None:
         """Upload updated JSON to GitHub."""
