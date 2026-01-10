@@ -2,24 +2,25 @@ import streamlit as st
 
 from src.db import GithubClient
 from src.audio import read_list_aloud
+from faker import Faker
 
 st.set_page_config(page_title="Merlin Games", page_icon="🧙‍♂️")
 
 # allows communication between different users
 client = GithubClient()
 
+faker = Faker()
+
 with st.sidebar:
-    username = st.text_input("What is your (real) name?")
+    username = st.text_input("What is your (real) name?", value = faker.name())
 
     if st.button("New round (clears names)"):
         # clear our names out - TODO: make more flexible for multiple games
         client.write_github_json(dict())
 
-
 empire, mafia = st.tabs(["Empire", "Mafia"])
 
 with empire:
-    st.title("Empire")
     
     with st.expander("Explain the rules"):
                 st.write("""To play empire, each person must come up with a name that is known to everyone in the group. This could be a celebrity, fictional character or someone you *all* know personally.""")
@@ -28,7 +29,7 @@ with empire:
     inpcol, buttcol = st.columns([4, 1])
 
     with inpcol:
-        resp = st.text_input("Who are you playing?")
+        resp = st.text_input("Who are you playing?", value = faker.name())
 
     with buttcol:
         # empty div for alignment :(
