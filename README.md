@@ -1,2 +1,4 @@
 # merlin
-Organised fun just got more organised - try it out [here](merlingames.streamlit.app)
+Organised fun just got more organised - try it out [here](https://www.merlingames.streamlit.app)
+
+
