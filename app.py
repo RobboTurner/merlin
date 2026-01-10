@@ -33,9 +33,11 @@ with empire:
     with buttcol:
         # empty div for alignment :(
         st.markdown("<div style='height: 22px;'></div>", unsafe_allow_html=True)
-        if st.button("Submit name"):
-            client.update_github_json({username: resp})
-            st.text("Thanks for submitting your guess! To change your answer, send a different answer through. To let someone else without a phone submit their own name, make sure they change their name at the top!")
+        submit = st.button("Submit name")
+        
+    if submit:
+        client.update_github_json({username: resp})
+        st.text("Thanks for submitting your guess! To change your answer, send a different answer through. To let someone else without a phone submit their own name, make sure they change their name at the top!")
 
     
     if st.button("All names submitted"):
