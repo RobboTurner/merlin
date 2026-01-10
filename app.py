@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title="Merlin socials", page_icon="🧙‍♂️")
+st.set_page_config(page_title="Merlin Games", page_icon="🧙‍♂️")
 
 empire, mafia = st.tabs(["Empire", "Mafia"])
 
