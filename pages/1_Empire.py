@@ -26,7 +26,7 @@ with st.form("empire"):
         st.markdown("<div style='height: 22px;'></div>", unsafe_allow_html=True)
 
        #only show button if form filled
-        submit = st.form_submit_button("Submit name")#not form_complete)
+        submit = st.form_submit_button("Submit name", type= "primary")
     
 if submit:
     if not(bool(resp) and bool(username)):
@@ -36,13 +36,13 @@ if submit:
         st.text("Thanks for submitting your guess! To change your answer, send a different answer through. To let someone else without a phone submit their own name, make sure they change their name at the top!")
 
 
-if st.button("All names submitted"):
+if st.button("All names submitted", type="primary"):
     # get final values
     final_list = [name for name in client.read_github_json().values()]
     
     # read aloud
     read_list_aloud(final_list, shuffle_list = True)
 
-if st.button("New round (clears names)"):
+if st.button("New round (clears names)", type="primary"):
     # clear our names out - TODO: make more flexible for multiple games
     client.write_github_json(dict())
