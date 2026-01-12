@@ -21,12 +21,13 @@ class GithubClient:
         """Fetch latest SHA + content metadata."""
         response = requests.get(self.url, headers=self.headers)
 
+        # First response in a game will have nothing to read so set None
         if response.status_code == 404:
-            # File does not exist so create an empty json
             self.current_data = None
             self.sha = None
         else:
             self.current_data = response.json()
+            # setting SHA - needed to overwrite existing file later
             self.sha = self.current_data.get("sha")
 
     def read_github_json(self) -> Dict:
