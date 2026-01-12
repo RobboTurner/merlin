@@ -9,7 +9,7 @@ with st.container(horizontal=True):
     
 
 # allows communication between different users
-client = GithubClient(game_id=game_id)
+client = GithubClient(game_name="empire", game_id=game_id)
 
 with st.expander("Explain the rules"):
             st.write("""To play empire, each person must come up with a name that is known to everyone in the group. This could be a celebrity, fictional character or someone you *all* know personally.""")
