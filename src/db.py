@@ -34,7 +34,7 @@ class GithubClient:
         self.refresh_metadata()
 
         if self.current_data is not None:
-            encoded = self.current_data
+            encoded = self.current_data["content"]
             decoded = base64.b64decode(encoded).decode()
             return json.loads(decoded)
         
