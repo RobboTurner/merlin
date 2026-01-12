@@ -12,8 +12,10 @@ with st.container(horizontal=True):
 client = GithubClient(game_id=game_id)
 
 with st.expander("Explain the rules"):
-            st.write("""To play empire, each person must come up with a name that is known to everyone in the group. This could be a celebrity, fictional character or someone you *all* know personally. The list of names will be read out once - players sit in a circle and take it in turns to guess another player's character. If correct, the guessed player moves to sit next to their guesser - from now on, they work as a team. Last player unguessed wins!""")
-            st.write("""To start, add your name to the below box. Once everyone has a name, choose someone to start the game on their phone. Make sure their volume is turned up!""")
+            st.write("""To play empire, each person must come up with a name that is known to everyone in the group. This could be a celebrity, fictional character or someone you *all* know personally. The list of names will only be read out once unless all players agree to reread. Players sit in a circle and take it in turns to guess another player's character. If correct, the guessed player moves to sit next to their guesser - from now on, they work as a team. Last player unguessed wins!""")
+            st.write("""To start, add your name to the below box. If you change your mind, just resubmit a new character. No phone? No problem - just borrow someone else's but make sure to change the player name as well as the character.""")
+            st.write("""Once everyone has a name, choose someone to start the game on their phone. Make sure their volume is turned up!""")
+
 
 with st.form("empire"):
     yourname, character, buttcol = st.columns([3, 3, 1])
