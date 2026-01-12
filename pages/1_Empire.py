@@ -5,10 +5,11 @@ from src.audio import read_list_aloud
 st.set_page_config(page_title="Empire")
 with st.container(horizontal=True):
     st.title("Empire", width="stretch")
+    game_id = st.number_input("Game ID", value = 1)
     
 
 # allows communication between different users
-client = GithubClient()
+client = GithubClient(game_id=game_id)
 
 with st.expander("Explain the rules"):
             st.write("""To play empire, each person must come up with a name that is known to everyone in the group. This could be a celebrity, fictional character or someone you *all* know personally.""")
