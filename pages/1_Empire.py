@@ -2,11 +2,13 @@ import streamlit as st
 from src.db import GithubClient
 from src.audio import read_list_aloud
 
+st.set_page_config(page_title="Empire")
+with st.container(horizontal=True):
+    st.title("Empire", width="stretch")
+    
+
 # allows communication between different users
 client = GithubClient()
-
-st.set_page_config(page_title="Empire")
-st.title("Empire")
 
 with st.expander("Explain the rules"):
             st.write("""To play empire, each person must come up with a name that is known to everyone in the group. This could be a celebrity, fictional character or someone you *all* know personally.""")
@@ -35,14 +37,14 @@ if submit:
         client.update_github_json({username: resp})
         st.text("Thanks for submitting your guess! To change your answer, send a different answer through. To let someone else without a phone submit their own name, make sure they change their name at the top!")
 
+with st.container(horizontal=True):
+    if st.button("All names submitted", type="primary", width = 150):
+        # get final values
+        final_list = [name for name in client.read_github_json().values()]
 
-if st.button("All names submitted", type="primary"):
-    # get final values
-    final_list = [name for name in client.read_github_json().values()]
-    
-    # read aloud
-    read_list_aloud(final_list, shuffle_list = True)
+        # read aloud
+        read_list_aloud(final_list, shuffle_list = True)
 
-if st.button("New round (clears names)", type="primary"):
-    # clear our names out - TODO: make more flexible for multiple games
-    client.write_github_json(dict())
+    if st.button("Delete all submitted names", type="primary", width = 150):
+        # clear our names out - TODO: make more flexible for multiple games
+        client.write_github_json(dict())
