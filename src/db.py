@@ -9,27 +9,37 @@ from dataclasses import dataclass
 class GithubClient:
     token: str = st.secrets["GITHUB_TOKEN"]
     repo: str = "RobboTurner/merlindata"
-    file: str = "data/state.json"
     branch: str = "main"
+    game_id: int = 1
 
-    def __post_init__(self):
-        self.url = f"https://api.github.com/repos/{self.repo}/contents/{self.file}?ref={self.branch}"
+    def __post_init__(self) -> None:
+        self.url = f"https://api.github.com/repos/{self.repo}/contents/data/game_{self.game_id}.json?ref={self.branch}"
         self.headers = {"Authorization": f"Bearer {self.token}"}
         self.refresh_metadata()
 
-    def refresh_metadata(self):
+    def refresh_metadata(self) -> None:
         """Fetch latest SHA + content metadata."""
-        self.current_data = requests.get(self.url, headers=self.headers).json()
-        self.sha = self.current_data.get("sha")
+        response = requests.get(self.url, headers=self.headers)
+
+        if response.status_code == 404:
+            # File does not exist so create an empty json
+            self.current_data = None
+            self.sha = None
+        else:
+            self.current_data = response.json()
+            self.sha = self.current_data.get("sha")
 
     def read_github_json(self) -> Dict:
         """Download and decode JSON file."""
         self.refresh_metadata()
-        encoded = self.current_data["content"]
-        decoded = base64.b64decode(encoded).decode()
+
+        if self.current_data is not None:
+            encoded = self.current_data
+            decoded = base64.b64decode(encoded).decode()
+            return json.loads(decoded)
         
-        # includes all games
-        return json.loads(decoded)
+        else:
+            return {}
         
 
     def write_github_json(self, new_data: Dict) -> None:
