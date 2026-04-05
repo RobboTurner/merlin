@@ -43,8 +43,11 @@ if submit:
 with st.container(horizontal=True):
     if st.button("All names submitted", type="primary", width = 150):
         # get final values
-        final_list = [name for name in client.read_github_json().values()]
+        data = client.read_github_json()
+        players = list(data.keys())
+        final_list = list(data.values()) 
 
+        st.text(f"your players are: {players} "
         # read aloud
         read_list_aloud(final_list, shuffle_list = True)
 
