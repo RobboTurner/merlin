@@ -49,7 +49,7 @@ with st.container(horizontal=True):
         
         playerstr = "Playing this round:" 
         for x in players:
-          playerstr += "\n -" + x
+          playerstr += "<br> -" + x
 
         st.markdown(playerstr) 
 
