@@ -51,7 +51,7 @@ with st.container(horizontal=True):
         for x in players:
           playerstr += "\n -" + x
 
-        st.markdown("playerstr") 
+        st.markdown(playerstr) 
 
         # read aloud
         final_list = list(data.values()) 
