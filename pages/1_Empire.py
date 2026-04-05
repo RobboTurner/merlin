@@ -47,7 +47,7 @@ with st.container(horizontal=True):
         players = list(data.keys())
         final_list = list(data.values()) 
 
-        st.text(f"your players are: {players} "
+        st.text(f"your players are: {players} ") 
         # read aloud
         read_list_aloud(final_list, shuffle_list = True)
 
