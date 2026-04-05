@@ -44,11 +44,17 @@ with st.container(horizontal=True):
     if st.button("All names submitted", type="primary", width = 150):
         # get final values
         data = client.read_github_json()
-        players = list(data.keys())
-        final_list = list(data.values()) 
 
-        st.text(f"your players are: {players} ") 
+        players = list(data.keys())
+        
+        playerstr = "Playing this round:" 
+        for x in players:
+          playerstr += "\n -" + x
+
+        st.markdown("playerstr") 
+
         # read aloud
+        final_list = list(data.values()) 
         read_list_aloud(final_list, shuffle_list = True)
 
     if st.button("Delete all submitted names", type="primary", width = 150):
