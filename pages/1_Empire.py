@@ -9,7 +9,7 @@ with st.container(horizontal=True):
     
 
 # allows communication between different users
-client = GithubClient(game_id=game_id)
+client = GithubClient(game_name="empire", game_id=game_id)
 
 with st.expander("Explain the rules"):
             st.write("""To play empire, each person must come up with a name that is known to everyone in the group. This could be a celebrity, fictional character or someone you *all* know personally. The list of names will only be read out once unless all players agree to reread. Players sit in a circle and take it in turns to guess another player's character. If correct, the guessed player moves to sit next to their guesser - from now on, they work as a team. Last player unguessed wins!""")

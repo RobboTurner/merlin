@@ -11,9 +11,10 @@ class GithubClient:
     repo: str = "RobboTurner/merlindata"
     branch: str = "main"
     game_id: int = 1
+    game_name: str
 
     def __post_init__(self) -> None:
-        self.url = f"https://api.github.com/repos/{self.repo}/contents/data/game_{self.game_id}.json?ref={self.branch}"
+        self.url = f"https://api.github.com/repos/{self.repo}/contents/data/{self.game_name}/game_{self.game_id}.json?ref={self.branch}"
         self.headers = {"Authorization": f"Bearer {self.token}"}
         self.refresh_metadata()
 
