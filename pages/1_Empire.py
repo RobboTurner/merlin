@@ -46,7 +46,8 @@ with st.container(horizontal=True):
         # get final values
         data = client.read_github_json()
 
-        players = random.shuffle(list(data.keys()))
+        players = list(data.keys())
+        random.shuffle(players)
         
         playerstr = "Playing this round:" 
         for x in players:
