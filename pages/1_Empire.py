@@ -1,6 +1,7 @@
 import streamlit as st
 from src.db import GithubClient
 from src.audio import read_list_aloud
+import random
 
 st.set_page_config(page_title="Empire")
 with st.container(horizontal=True):
@@ -45,7 +46,7 @@ with st.container(horizontal=True):
         # get final values
         data = client.read_github_json()
 
-        players = list(data.keys())
+        players = random.shuffle(list(data.keys()))
         
         playerstr = "Playing this round:" 
         for x in players:
